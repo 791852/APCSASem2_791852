@@ -43,7 +43,7 @@ public class LabClass
         for(int i = list.length; i>0; i--){ //allows for loops to check every value in array against every other value
             int index = i;
             for(int j = i+1; j<list.length; j++){ 
-                if(list[j]<list[index]){ //compares to values of array and switches the indeces of the two as needed
+                if(list[j]<list[index]){ //compares two values of array and switches the indeces of the two as needed
                     index = j;
                 }
                 int smallerNumber = list[index]; //finds the smaller value and sets it to a number
@@ -58,4 +58,4 @@ public class LabClass
             System.out.print(" " + list[i] + " ");
         }
     }
-}
+}  
