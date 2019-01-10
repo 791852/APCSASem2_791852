@@ -6,26 +6,29 @@ import java.util.*;
 public class LabClass
 {
     public static void main(){
-        ArrayList<Integer> nums = new ArrayList();
-         for(int i =0; i < nums.size(); i++){
+        int nums [] = new int [20]; //creates array to work with
+         for(int i =0; i < nums.length; i++){ //fills array with random numbers
             int random = (int)(Math.random()*11);
-            nums.add(random);
+            nums[i] =random;
         }
-        listPrint(nums);
-        sortList(nums);
-        listPrint(nums);
+        sortList(nums); //sorts array 
+        listPrint(nums); //prints out sorted array check
     }
-    public static ArrayList sortList(ArrayList<Integer> list){
-        for(int i = 0; i < list.size() - 1; i++){
-            if(list.get(i) > list.get(i+1)){
-                list.set(i+1, list.get(i));
+    public static int[] sortList(int list[]){
+        for(int i = list.length; i>1; i--){ //allows for loops to check every value in array against every other value
+            for(int j = 0; j<list.length-1; j++){ 
+                if(list[j]>list[j+1]){ //compares every value to the next
+                    int greater =  list[j];
+                    list[j] = list[j+1];
+                    list[j+1] = greater; //changes out values and sorts array
+                }
             }
         }
         return list;
     }
-    public static void listPrint(ArrayList<Integer> list){
-        for(int i = 0; i < list.size(); i++){
-            System.out.print(" " + list.get(i) + " ");
+    public static void listPrint(int list[]){
+        for(int i = 0; i < list.length; i++){ //goes through every value in the array and prints it
+            System.out.print(" " + list[i] + " ");
         }
     }
 }

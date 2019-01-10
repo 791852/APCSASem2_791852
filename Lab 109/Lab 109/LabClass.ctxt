@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.target=LabClass
-comment0.text=\n\ Veronica\ Pratt\n\ \n
+comment0.text=\r\n\ Veronica\ Pratt\r\n\ \r\n
 comment1.params=
 comment1.target=void\ main()
 comment2.params=list
-comment2.target=java.util.ArrayList\ sortList(java.util.ArrayList)
+comment2.target=int[]\ sortList(int[])
 comment3.params=list
-comment3.target=void\ listPrint(java.util.ArrayList)
+comment3.target=void\ listPrint(int[])
 numComments=4
