@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=LabClass
+comment0.text=\r\n\ Veronica\ Pratt\r\n\ \r\n
+comment1.params=
+comment1.target=void\ mainmySort()
+comment2.params=
+comment2.target=void\ mainBubbleSort()
+comment3.params=
+comment3.target=void\ mainSelectionSort()
+comment4.params=
+comment4.target=void\ mainInsertionSort()
+comment5.params=list
+comment5.target=int[]\ mySort(int[])
+comment6.params=list
+comment6.target=int[]\ bubbleSort(int[])
+comment7.params=list
+comment7.target=int[]\ selectionSort(int[])
+comment8.params=list
+comment8.target=int[]\ insertionSort(int[])
+comment9.params=list
+comment9.target=void\ listPrint(int[])
+numComments=10
