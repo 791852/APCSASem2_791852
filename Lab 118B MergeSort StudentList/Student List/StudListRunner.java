@@ -52,7 +52,7 @@ public class StudListRunner
                 System.out.print(studentListObject.filterStudentSearch());
             }
             if(input == 8){
-                System.out.print(studentListObject.mergeSort(studList, studList.size()));
+                System.out.print(studentListObject.sortStarter());
             }
         }
     }

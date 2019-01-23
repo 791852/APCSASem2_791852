@@ -9,11 +9,13 @@ public class StudentList
     public StudentList(){
         studList = new ArrayList<Student>();;
     }
+
     public static int menuNumber(){
         Scanner in = new Scanner(System.in);
         int returnVar = in.nextInt();
         return returnVar;
     }
+
     public void parseUserInput(String name, Student student){
         String fn = "";
         String mn = "";
@@ -39,6 +41,7 @@ public class StudentList
         student.setmiddleName(mn);
         student.setlastName(ln);
     }
+
     public void addStudenttoList(String name, int num, double GPA){
         Student student = new Student("Bob", 0, 0.00);
         studList.add(student); //this adds a student to the list as a placeholder
@@ -52,6 +55,7 @@ public class StudentList
         double GPAentered = scannerGPA.nextDouble();
         student.setGPA(GPAentered);
     }
+
     public String deleteStudent(){
         System.out.println("Enter 1 if you want to enter a student number"); //checks whether they want to enter a name or number
         System.out.println("Enter 2 if you want to enter a student's last name");
@@ -78,6 +82,7 @@ public class StudentList
         }
         return "The student has been deleted"; //then the code confirms that the student has been deleted
     }
+
     public String editStudentList(){
         System.out.println("Enter 1 if you want to enter a student number");
         System.out.println("Enter 2 if you want to enter a student's last name");
@@ -179,10 +184,12 @@ public class StudentList
         }
         return "The student has now been edited!";
     }
+
     public String clearList(){
         studList.clear(); //this clears the list, it is very straightfor
         return "You have cleared the list";
     }
+
     public String printList(){
         System.out.println("\u000c"); //this clears the screen so the list shows up independently of other stuff
         int index = 0;
@@ -194,6 +201,7 @@ public class StudentList
         }
         return "The list has been printed above";
     }
+
     public String printStudent(){
         System.out.println("Please press 1 to enter the student's number or 2 to enter their name");
         Scanner scanner = new Scanner(System.in);
@@ -223,6 +231,7 @@ public class StudentList
         }
         return "The student has been printed above";
     }
+
     public String filterStudentSearch(){
         System.out.println("Please enter 1 if you want to sort by student number or 2 to sort by GPA");
         Scanner scanner = new Scanner(System.in);
@@ -260,48 +269,76 @@ public class StudentList
         }
         return "The list has been filtered";
     }
+
+    public String sortStarter(){
+        System.out.println("Please enter the index of students you wish to sort");
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = scanner.nextInt();
+        studList = studList;
+        for(int i=0; i<studList.size(); i++){
+            System.out.print(studList.get(i));
+        }
+        return mergeSort(studList, inputNum);
+    }
+
     public String mergeSort(ArrayList<Student> studList, int stuNumInput){
-        System.out.println("Please enter 1 if you want to sort by student number");
+        int mid = stuNumInput/2;
+        ArrayList<Student> left = new ArrayList();
+        ArrayList <Student> right = new ArrayList();
+        for(int i = 0; i < mid; i++){ //iterates over the Array List to the mid point
+            left.add(studList.get(i));
+        }
+        for(int i =mid; i<stuNumInput; i++){
+            right.add(studList.get(i));
+        }
+        mergeSort(left, mid);
+        mergeSort(right, stuNumInput-mid);
+        merge(studList, left, right, mid, stuNumInput-mid);
+        return "The list has been sorted";
+    }
+
+    public static void merge(ArrayList<Student> list, ArrayList<Student> l, ArrayList<Student> r, int left, int right){
+        int i=0, j=0, k=0;
+        while(i<left && j<right){
+            if(l.get(i).getstuNumber() <= r.get(j).getstuNumber()){
+                list.set(k++, l.get(i));
+            }else{
+                list.set(k++, r.get(j++));
+            }
+        }
+        while(i<left){
+            list.set(k++, l.get(i++));
+        }
+        while(j<right){
+            list.set(k++, r.get(j++));
+        }
+    }
+
+    public String binarySearchStarter(){
+        return binarySearch(studList, studList.size());
+    }
+
+    public String binarySearch(ArrayList<Student> list, int index){
+        System.out.println("Please enter the student number you wish to find");
         Scanner scanner = new Scanner(System.in);
         int inputNum = scanner.nextInt();
         int count = 0; //this counter is to check whether a student with the given parameters exists
-        studList = studList;
-        if(inputNum == 1){ //this is if they enter a student number
-            System.out.println("Please enter the number of students in the list you wish to sort");
-            Scanner numScanner = new Scanner(System.in);
-            stuNumInput = numScanner.nextInt();
-            int mid = stuNumInput/2;
-            ArrayList<Student> left = new ArrayList();
-            ArrayList <Student> right = new ArrayList();
-            for(int i = 0; i < mid; i++){ //iterates over the Array List to the mid point
-               left.set(i, studList.get(i).getstuNumber());
-            }
-            for(int i =mid; i<stuNumInput; i++){
-                right.set(i-mid, studList.get(i).getstuNumber());
-            }
-            mergeSort(left, mid);
-            mergeSort(right, stuNumInput-mid);
-            merge(studList, left, right, mid, stuNumInput-mid);
+
+        System.out.println("Please enter the student number by which you wish to filter the list");
+        Scanner numScanner = new Scanner(System.in);
+        int stuNumInput = numScanner.nextInt();
+        for(int i = 0; i < studList.size(); i++){ //iterates over the Array List
+            if(studList.get(i).getstuNumber() <= stuNumInput){ //checks each the student number at index 
+                //i.e. if each student has the student number or a student number less than that
+                System.out.print(studList.get(i).getfullName() + " "); //prints each student's information
+                System.out.print(studList.get(i).getGPA() + " ");
+                System.out.println(studList.get(i).getstuNumber());
+                count += 1; //counts how many students had a number <= the given one
+            } 
         }
         if(count == 0){ //this is in the case of when no student fits the parameters given by the user 
             return "I'm sorry, but no such student exists";
         }
-        return "The list has been sorted";
-    }
-    public static void merge(ArrayList<Student> list, ArrayList<Integer> l, ArrayList<Integer> r, int left, int right){
-        int i=0, j=0, k=0;
-        while(i<left && j<right){
-            if(l.get(i) <= r.get(j)){
-                list.set(k++, left.getstuNumber(i++));
-            }else{
-                list.set(k++, right.getstuNumber(j++));
-            }
-        }
-        while(i<left){
-            list.set(k++, left.getstuNumber(i++));
-        }
-        while(j<right){
-            list.set(k++, right.getstuNumber(j++));
-        }
+        return "The list has been filtered";
     }
 } 
