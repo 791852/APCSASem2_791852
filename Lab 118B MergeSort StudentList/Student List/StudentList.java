@@ -315,30 +315,36 @@ public class StudentList
     }
 
     public String binarySearchStarter(){
-        return binarySearch(studList, studList.size());
-    }
-
-    public String binarySearch(ArrayList<Student> list, int index){
-        System.out.println("Please enter the student number you wish to find");
+        System.out.println("Please enter the student number of the student you wish to find");
         Scanner scanner = new Scanner(System.in);
         int inputNum = scanner.nextInt();
-        int count = 0; //this counter is to check whether a student with the given parameters exists
+        return binarySearch(studList, 0, studList.size(), inputNum);
+    }
 
-        System.out.println("Please enter the student number by which you wish to filter the list");
-        Scanner numScanner = new Scanner(System.in);
-        int stuNumInput = numScanner.nextInt();
-        for(int i = 0; i < studList.size(); i++){ //iterates over the Array List
-            if(studList.get(i).getstuNumber() <= stuNumInput){ //checks each the student number at index 
-                //i.e. if each student has the student number or a student number less than that
-                System.out.print(studList.get(i).getfullName() + " "); //prints each student's information
-                System.out.print(studList.get(i).getGPA() + " ");
-                System.out.println(studList.get(i).getstuNumber());
-                count += 1; //counts how many students had a number <= the given one
-            } 
+    public String binarySearch(ArrayList<Student> list, int start, int end, int inputNum){
+        sortStarter(); //sorts the list, because this only works with a sorted list
+        int count = 0; //this counter is to check whether a student with the given parameters exists
+        int mid = end/2;
+        if(end>0 || list.size()>0){ //this makes sure the list/index can be checked, or else it doesn't make sense
+        if(list.get(mid).getstuNumber() == inputNum){
+            System.out.print(list.get(mid).getfullName() + " "); //prints each student's information
+            System.out.print(list.get(mid).getGPA() + " ");
+            System.out.println(list.get(mid).getstuNumber());
+            count += 1; //counts how many students had a number = the given one
+            return "The student has been found";
         }
-        if(count == 0){ //this is in the case of when no student fits the parameters given by the user 
+        if(list.get(mid).getstuNumber() < inputNum){
+            return binarySearch(list, mid, end, inputNum); //if the midpoint is less that the input, I shift the arrayList so it checks the upper half of the arrayList only
+            //then it tries again, and keeps going until the first if statement is taken
+        }
+        if(list.get(mid).getstuNumber() > inputNum){
+            return binarySearch(list, 0, mid, inputNum); //if the midpoint is greater than the input, I shift the arrayList so it only checks the lower half
+            //then it tries again, and goes until the first if statement is taken
+        }
+      }
+      if(count == 0){ //this is in the case of when no student fits the parameters given by the user 
             return "I'm sorry, but no such student exists";
-        }
-        return "The list has been filtered";
+      }
+        return "The student has been found";
     }
 } 

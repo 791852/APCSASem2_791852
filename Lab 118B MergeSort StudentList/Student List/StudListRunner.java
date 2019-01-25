@@ -21,6 +21,7 @@ public class StudListRunner
             System.out.println("To print a Student, enter 6");
             System.out.println("To filter the list, enter 7");
             System.out.println("To sort the list by student number, enter 8");
+            System.out.println("To search the list by student number, enter 9");
             System.out.println("To exit this program, enter 0");
             int input = studentListObject.menuNumber(); //this sets a variable equal to the number the user inputs
             if(input == 0){ //these if statements all check for what number the user inputs, and then does the requested method
@@ -53,6 +54,9 @@ public class StudListRunner
             }
             if(input == 8){
                 System.out.print(studentListObject.sortStarter());
+            }
+            if(input == 9){
+                System.out.print(studentListObject.binarySearchStarter());
             }
         }
     }
