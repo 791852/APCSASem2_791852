@@ -15,6 +15,7 @@ public class MySwingApplication implements Runnable
         jFrame.add(canvasComponent);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setVisible(true); //making jFrame visible
+        jFrame.addKeyListener(canvasComponent);
     }
     public static void main(){
         MySwingApplication mySwingApplicationSwing = new MySwingApplication();
