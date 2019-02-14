@@ -15,6 +15,7 @@ public class CardTester {
 		System.out.println("card1 suit = " + card1.suit()); //testing all the methods
 		System.out.println("card2 rank = " + card2.rank());
 		System.out.println("card3 point value = " + card3.pointValue());
+		System.out.println(card4.toString());
 		System.out.println(card1.matches(card2)); //seing if different cards match in suit, rank, or pointvalue
 		System.out.println(card3.matches(card4));
 	}
