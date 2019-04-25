@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Questions
+comment1.params=arr1
+comment1.target=java.lang.Integer\ findMissing(java.util.ArrayList)
+comment2.params=a1\ a2\ targ
+comment2.target=int\ findSum(int[],\ int[],\ int)
+comment3.params=str
+comment3.target=java.lang.String\ findFirstRepeating(java.lang.String)
+comment4.params=a1\ a2\ a3
+comment4.target=java.util.ArrayList\ findIntersection(int[],\ int[],\ int[])
+comment5.params=mat
+comment5.target=int[][]\ flipDiagonal(int[][])
+numComments=6
